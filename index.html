@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marl – Portfolio</title>
+<style>
+:root{
+  --bg:#EEF1EF; --surface:#FFFFFF; --ink:#1B2B34; --muted:#52646C; --line:#CBD4D1; --accent:#7A3B54; --accent-ink:#FFFFFF;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#141C20; --surface:#1D282D; --ink:#E8EEEC; --muted:#9FB0B5; --line:#33434A; --accent:#E3A3BC; --accent-ink:#141C20; color-scheme:dark;}
+}
+:root[data-theme="dark"]{--bg:#141C20; --surface:#1D282D; --ink:#E8EEEC; --muted:#9FB0B5; --line:#33434A; --accent:#E3A3BC; --accent-ink:#141C20; color-scheme:dark;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.0625rem;line-height:1.6;}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem;}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;line-height:1.1;margin:0;letter-spacing:-0.02em;}
+header{padding:4.5rem 0 2.5rem;}
+h1{font-size:clamp(3.5rem,14vw,6.5rem);font-weight:800;}
+.lede{font-size:clamp(1.2rem,3.2vw,1.5rem);max-width:34rem;margin:1rem 0 0;color:var(--muted);}
+.tones{display:flex;height:3.25rem;margin-top:2.5rem;border-radius:.4rem;overflow:hidden;}
+.tones span{flex:1;}
+.tones-note{font-size:.9rem;color:var(--muted);margin:.6rem 0 0;}
+nav{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:2rem;}
+a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:.2em;}
+a:hover{color:var(--accent);}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+section{padding:3rem 0;border-top:1px solid var(--line);}
+h2{font-size:1.9rem;margin-bottom:1.25rem;}
+p{margin:0 0 1rem;max-width:40rem;}
+.project{background:var(--surface);border:1px solid var(--line);border-radius:.6rem;padding:1.75rem;}
+.project + .project{margin-top:1.5rem;}
+.project h3{font-size:1.6rem;margin-bottom:.35rem;}
+.meta{color:var(--muted);margin-bottom:1.25rem;}
+.facts{list-style:none;margin:1.25rem 0;padding:0;display:grid;gap:.9rem;}
+.facts li{padding-left:1rem;border-left:3px solid var(--accent);max-width:40rem;}
+.facts strong{display:block;}
+details{border-top:1px solid var(--line);padding:.9rem 0;}
+details:last-of-type{border-bottom:1px solid var(--line);}
+summary{cursor:pointer;font-weight:600;}
+details p{margin:.75rem 0 0;}
+.stack{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.25rem 0 0;padding:0;list-style:none;}
+.stack li{border:1px solid var(--line);border-radius:99px;padding:.15rem .8rem;font-size:.95rem;}
+.skills{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));}
+.skills h3{font-size:1.1rem;margin-bottom:.35rem;}
+.skills p{margin:0;color:var(--muted);}
+footer{padding:3rem 0 4rem;border-top:1px solid var(--line);}
+@media (prefers-reduced-motion:no-preference){a{transition:color .15s;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Marl</h1>
+  <p class="lede">Final-year Computer Science student (Software Engineering) at FEU Institute of Technology. I build Python backend and computer vision systems as well as TypeScript web apps, and I’m looking for an internship where I can ship real features.</p>
+  <nav aria-label="Page sections">
+    <a href="#project">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="project">
+  <h2>Projects</h2>
+  <article class="project">
+    <h3>SkinSync</h3>
+    <p class="meta">Android app and research paper. Team of four students with a faculty mentor.</p>
+    <p>SkinSync helps people with acne-prone skin choose base makeup that suits them. It analyzes a face photo and a short quiz to find skin tone, skin type, and acne severity, then reads a product’s ingredient label with OCR and scores how well the product fits that skin. My part was the Python backend and the technical documentation of the algorithms.</p>
+
+    <ul class="facts">
+      <li><strong>Skin tone: 94.53% accuracy on 1,500 samples</strong>Lightness is measured in the CIELAB color space with outliers trimmed, mapped to Fitzpatrick types, and cross-checked against a trained classifier.</li>
+      <li><strong>Skin type: 84% accuracy, quiz and image combined</strong>Texture features from the photo are blended with an eight-question quiz at 70/30. The quiz gets the heavier weight because habits like how quickly skin gets oily proved more stable than a single image.</li>
+      <li><strong>Acne: 96% category accuracy, 89% severity accuracy</strong>Lesions are found with color and shape rules inside the detected skin area, then graded by a trained classifier that is cross-checked against lesion count.</li>
+      <li><strong>Ingredient matching: 94% accuracy on 500 test cases</strong>Tesseract OCR reads the label, then exact and fuzzy matching find each ingredient in an INCI database. Points for good and bad ingredients become a 0 to 100 score and a verdict.</li>
+      <li><strong>User rating: 4.42 out of 5 from 50 respondents</strong>Testers rated the app on ISO 25010 quality criteria. Usability scored highest at 4.53.</li>
+    </ul>
+
+    <details>
+      <summary>Problem I debugged</summary>
+      <p>Non-face images were passing validation because the face detection threshold was too permissive. I tightened it and added explicit rejection rules for text-heavy images. While testing, I also found a reference hash with 65 characters instead of 64, which broke exact matching.</p>
+    </details>
+    <details>
+      <summary>Documentation</summary>
+      <p>I wrote the technical report chapter that explains the skin tone and skin type pipelines step by step with pseudocode. The team also wrote an ACM-format research paper covering the full system and its evaluation.</p>
+    </details>
+    <details>
+      <summary>Deployment</summary>
+      <p>The Python backend runs on Google Cloud Run, and the mobile front end is built with Flutter.</p>
+    </details>
+    <details>
+      <summary>Limitations we reported</summary>
+      <p>Skin type was the hardest task, mostly telling Dry skin from Combination. OCR struggles with curved or small-font packaging. The app helps with product choice and is not a medical diagnosis tool.</p>
+    </details>
+
+    <ul class="stack" aria-label="Technologies">
+      <li>Python</li><li>Flutter</li><li>Tesseract OCR</li><li>CIELAB and K-Means</li><li>LBP and GLCM texture features</li><li>Google Cloud Run</li>
+    </ul>
+  </article>
+
+  <article class="project">
+    <h3>NoCrast</h3>
+    <p class="meta">Web app. Everything stays in the browser, with no server or account. Ongoing project that I’m still developing.</p>
+    <p>NoCrast tracks how long your tasks take, notices when you wander off, and shows you your own habits. Each task has a timer, deadline warnings arrive as desktop notifications, and tab switches and inactivity are logged but never judged without your say.</p>
+
+    <ul class="facts">
+      <li><strong>Timers that cannot drift</strong>There is no stored counter. Task time is calculated from the clock each time, so refreshing, sleep, and background throttling never make it wrong.</li>
+      <li><strong>Warnings that work in background tabs</strong>Browsers slow timers in hidden tabs, so the warnings tick from a Web Worker clock instead. Each task gets up to 14 warnings, from one month before the deadline to overdue.</li>
+      <li><strong>Distraction tracking you control</strong>You label each tab switch or idle period as Productive, Necessary, or Distraction, and only unlabeled and Distraction events count. Breaks are declared by you and are never tracked.</li>
+      <li><strong>Private by design</strong>Data lives in the browser using IndexedDB. Exports are validated before an import replaces anything, and analytics say “not enough data” rather than invent a number.</li>
+      <li><strong>Tested and audited</strong>68 unit and component tests plus 16 browser tests in real Chromium all pass. Lighthouse gives 100 for accessibility, best practices, and SEO, and 94 to 100 for performance.</li>
+    </ul>
+
+    <details>
+      <summary>How it’s built</summary>
+      <p>The app is about 1,900 lines of TypeScript in 39 files, with 5 runtime dependencies and a 112 KB gzipped main script. The code has three layers. Pure utility functions hold the rules, such as timer math and break math, so they are easy to test. Services handle storage and browser features. React components only display the data. Browser tests use a fake clock, so a 30-day warning schedule is checked in seconds. GitHub Actions runs the typecheck, lint, tests, and build on every push.</p>
+    </details>
+    <details>
+      <summary>Limitations I documented</summary>
+      <p>A web page can only see its own tab, so NoCrast knows when you leave but never where you went. Notifications need the tab to stay open and do not work on most phone browsers. Tests ran in Chromium only, and a manual check is still needed to confirm the operating system shows the notifications.</p>
+    </details>
+
+    <ul class="stack" aria-label="Technologies">
+      <li>React 19</li><li>TypeScript</li><li>Vite</li><li>Tailwind CSS</li><li>Dexie and IndexedDB</li><li>Vitest</li><li>Playwright</li><li>GitHub Actions</li>
+    </ul>
+  </article>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div><h3>Backend</h3><p>Python, C++, API design, cloud deployment</p></div>
+    <div><h3>Machine learning</h3><p>Computer vision pipelines using color spaces, texture features, and OCR, combined with rule-based scoring</p></div>
+    <div><h3>Frontend</h3><p>React, TypeScript, Tailwind CSS, browser storage with IndexedDB</p></div>
+    <div><h3>Quality</h3><p>Input validation, unit and end-to-end tests, CI, debugging</p></div>
+    <div><h3>Communication</h3><p>Technical writing, algorithm documentation, pseudocode</p></div>
+    <div><h3>Certifications</h3><p>Information Technology Specialist in Python. PMI Project Management Ready.</p></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <h2>Contact</h2>
+  <p>I’m open to internships and based in Manila, Philippines. Email me or look at my code.</p>
+  <p><a href="mailto:marlancheta019@gmail.com">marlancheta019@gmail.com</a><br>
+  <a href="https://github.com/MarlAncheta">github.com/MarlAncheta</a><br>
+  <a href="https://www.linkedin.com/in/marl-ancheta-50361838a/">linkedin.com/in/marl-ancheta-50361838a</a></p>
+</footer>
+</div>
+</body>
+</html>
